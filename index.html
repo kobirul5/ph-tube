@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ph-tube</title>
+  <!-- font link  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <style>
+    .inter {
+      font-family: "Inter", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <!-- font link  -->
+  <script src="https://kit.fontawesome.com/0301225de3.js" crossorigin="anonymous"></script>
+  
+  <!-- daisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+            red: '#FF1F3D',
+            dark: '#171717',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="inter">
+  <header class="w-11/12 mx-auto py-5 border-b">
+    <nav class="flex justify-between items-center">
+      <div class="w-[140px]">
+        <img src="./assets/Logo.png" alt="">
+      </div>
+      <div>
+        <label class="input input-bordered flex items-center gap-2">
+          <input type="text" class="grow" placeholder="Search" />
+          <i class="fa-solid fa-magnifying-glass" style="color: #858585;"></i>
+        </label>
+      </div>
+      <div>
+        <button class="btn">SORT</button>
+      </div>
+    </nav>
+    
+  </header>
+  <nav id="categories-container" class="flex justify-center items-center py-5 gap-5"></nav>
+  <main>
+    <section id="videos" class="w-11/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-auto py-10"></section>
+  </main>
+
+
+<!-- script  -->
+ <script src="./js/video.js"></script>
+</body>
+
+</html>
