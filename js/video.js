@@ -20,8 +20,8 @@ const loadCategory = () => {
         .then(res => res.json())
         .then(data => displayCategory(data.categories))
 }
-const videosCategory = () => {
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+const videosCategory = (searchText = '') => {
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
         .then(res => res.json())
         .then(data => displayVideo(data.videos))
 }
@@ -64,9 +64,6 @@ const loadVideo = (id) => {
         })
         .catch((error) => console.log(error))
 }
-
-
-
 
 const displayVideo = (videos) => {
     const videosContainer = document.getElementById('videos')
@@ -114,12 +111,34 @@ const displayVideo = (videos) => {
             }
             </div>
             <p class= "text-gray-500">${video.others.views} views</p>
+            <div class = "pt-4"> 
+                <button onclick="loadDetails('${video.video_id}')" class="btn btn-error">Details</button> 
+            </div>
             </div>
         </div>
             `
         videosContainer.append(card)
     })
 }
+
+const loadDetails = async (videoId) => {
+    const url = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`
+    const response = await fetch(url)
+    const data = await response.json()
+    displayDetails(data.video)
+    
+}
+
+const displayDetails = (video) => {
+    const detailContainer = document.getElementById('details-container')
+    detailContainer.innerHTML = `
+    <img class="w-full" src="${video.thumbnail}">
+    <p class= "pt-5">${video.description}</p>
+    `
+
+    document.getElementById('openDetails').showModal()
+}
+
 // category
 // : 
 // "Music"
@@ -140,6 +159,11 @@ const displayCategory = (categories) => {
         categoriesContainer.append(buttonContainer);
     });
 }
+
+document.getElementById('search-input').addEventListener('keyup', (input) => {
+    videosCategory(input.target.value)
+})
+
 loadCategory()
 
 videosCategory()
